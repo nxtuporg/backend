@@ -5,9 +5,6 @@ const app = express();
 connectDB();
 
 
-
-
-
 const cors = require('cors');
 app.use(cors());            
 const PORT = process.env.PORT || 6969
@@ -29,9 +26,6 @@ app.use('/api/carousel',carouselRoutes)
 
 app.use(express.json());
 
-
-
- 
 
 module.exports = app;
 
