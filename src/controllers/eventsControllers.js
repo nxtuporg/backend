@@ -30,3 +30,7 @@ const fetchEvents = async (req, res) => {
 module.exports = {
     fetchEvents,
 };
+
+
+
+

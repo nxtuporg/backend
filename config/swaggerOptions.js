@@ -26,7 +26,17 @@ const swaggerOptions = {
         }
 
     },
-    apis: ['../src/routes/*.js'], // Path to the API route files for auto-generating documentation
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
+            },
+        },
+    },
+    
+    apis: ['./src/routes/*.js'], // Path to the API route files for auto-generating documentation
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

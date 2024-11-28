@@ -33,8 +33,6 @@ const clanSchema = new mongoose.Schema({
     ],
     default: [], 
   },
-}, {
-  timestamps: true 
 });
 
 const Clan = mongoose.model('Clan', clanSchema);

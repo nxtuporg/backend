@@ -10,6 +10,10 @@ const clubSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   head: {
     type: String,
     required: true,
@@ -29,8 +33,6 @@ const clubSchema = new mongoose.Schema({
     ],
     default: [], 
   },
-}, {
-  timestamps: true 
 });
 
 const Club = mongoose.model('Club', clubSchema);
