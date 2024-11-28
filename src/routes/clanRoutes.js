@@ -6,51 +6,32 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/book/all:
+ * /api/clans:
  *   get:
- *     summary: Fetch all the clans
- *     tags: [Clans]
+ *     summary: Retrieve a list of events
+ *     description: Fetch all events from the database.
  *     responses:
  *       200:
- *         description: Successfully fetched all clans.
+ *         description: A list of events.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: success
- *                 data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/clans'
- *       404:
- *         description: No books found with the provided filters.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: No books found.
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     description: The event ID.
+ *                   name:
+ *                     type: string
+ *                     description: The event name.
+ *                   date:
+ *                     type: string
+ *                     format: date-time
+ *                     description: The event date.
  *       500:
- *         description: Server error occurred.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: error
- *                 message:
- *                   type: string
- *                   example: An error occurred while fetching books.
+ *         description: Internal server error.
  */
 router.get('/', fetchClans)
 

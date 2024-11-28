@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
     description: {type:String,unique:true,required:true},
     image: {type:JSON,required:true},
     link: {type:String,required:true},
-    
+    rel_id: {type:String,unique:true,required:true},
 })
 
 const Events = mongoose.model('Events', eventSchema);

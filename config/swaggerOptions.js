@@ -20,13 +20,13 @@ const swaggerOptions = {
         ],
     },
     schemas:{
-        Clan:{
+        Clan :{
             type:"Object",
 
         }
 
     },
-    apis: ['./routes/*.js'], // Path to the API route files for auto-generating documentation
+    apis: ['../src/routes/*.js'], // Path to the API route files for auto-generating documentation
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

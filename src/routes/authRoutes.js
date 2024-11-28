@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
+const router = express.Router();
 
 router.post("/register", async (req,res)=>{
     try{
@@ -25,7 +25,11 @@ router.post("/login",async (res,req)=>{
         const user = await User.findOne({ username });
         
     }
-    catch{
-        
+
+    catch (error){
+        res.status(500).json({ message: 'login failed' });
     }
 })
+
+module.exports = router;
+
