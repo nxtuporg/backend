@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const clubSchema = new mongoose.Schema({
+const clanSchema = new mongoose.Schema({
   id: {
     type: String,
     required: true,
@@ -18,6 +18,10 @@ const clubSchema = new mongoose.Schema({
     type: String,
     required: false, 
   },
+  score: {
+    type: Number,
+    default: 0,
+  },
   members: {
     type: [
       {
@@ -33,6 +37,6 @@ const clubSchema = new mongoose.Schema({
   timestamps: true 
 });
 
-const Club = mongoose.model('Club', clubSchema);
+const Clan = mongoose.model('Clan', clanSchema);
 
-module.exports = Club;
+module.exports = Clan;

@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require("dotenv").config()
 const connectDB = require("./config/db.js");
 const app = express();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./config/swaggerOptions.js');
 connectDB();
 
 
@@ -18,12 +20,13 @@ app.get('/',(req,res)=>{
 
 
 const eventsRoutes = require('./src/routes/eventsRoutes.js')
-const messmenuRoutes = require('./src/routes/messmenuRoutes.js')
+const clanRoutes = require('./src/routes/clanRoutes.js')
 const clubRoutes = require('./src/routes/clubRoutes.js')
 const carouselRoutes = require('./src/routes/carouselRoutes.js')
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api/events',eventsRoutes)
-app.use('/api/messmenu',messmenuRoutes)
+app.use('/api/clans',clanRoutes)
 app.use('/api/clubs',clubRoutes)
 app.use('/api/carousel',carouselRoutes)
 

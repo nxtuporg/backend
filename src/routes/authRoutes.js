@@ -25,4 +25,7 @@ router.post("/login",async (res,req)=>{
         const user = await User.findOne({ username });
         
     }
+    catch{
+        
+    }
 })
