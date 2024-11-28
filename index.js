@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 6969
 app.get('/',(req,res)=>{
     res.json("working")
 })
-
+ 
 
 const eventsRoutes = require('./src/routes/eventsRoutes.js')
 const clanRoutes = require('./src/routes/clanRoutes.js')
