@@ -5,14 +5,13 @@ const fetchClans = async (req, res) => {
         const clans = await Clan.find({});
 
         if (clans.length > 0) {
-
-            res.status(200).json({
+          return res.status(200).json({
                 success: true,
                 data: clans,
             });
         } else {
 
-            res.status(404).json({
+          return res.status(404).json({
                 success: false,
                 message: "No clan events found.",
             });
@@ -20,9 +19,10 @@ const fetchClans = async (req, res) => {
     } catch (error) {
         console.error("Error fetching clans:", error);
 
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "An error occurred while fetching clan data.",
+            error: error.message,
         });
     }
 };
@@ -31,7 +31,7 @@ const fetchClans = async (req, res) => {
 
 const updateClan = async (req, res) => {
     try {
-      const { clanId } = req.params.id;
+      const { clanId } = req.params.clanId;
       const updateData = req.body;
   
      
@@ -67,9 +67,48 @@ const updateClan = async (req, res) => {
       });
     }
   };
+
+
+
+const addClan = async (req, res) => {
+    try {
+      const { name, description, location } = req.body;
+  
+      if (!name || !description || !location) {
+        return res.status(400).json({
+          success: false,
+          message: 'All fields (name, description, location) are required.',
+        });
+      }
+
+      const newClan = new Clans({
+        name,
+        description,
+        location,
+      });
+  
+      const savedClan = await newClan.save();
+  
+      return res.status(201).json({
+        success: true,
+        message: 'Clan created successfully',
+        data: savedClan,
+      });
+    } catch (error) {
+      console.error('Error adding clan:', error);
+  
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred while adding the clan.',
+        error: error.message,  
+      });
+    }
+  };
   
 
 module.exports = {
-    fetchClans,updateClan
+    fetchClans,
+    updateClan,
+    addClan,
 };
 
