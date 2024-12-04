@@ -1,10 +1,6 @@
 const express = require("express");
 
-const {fetchCarousel} = require('../controllers/carouselControllers')
-
-const {addCarousel} = require('../controllers/carouselControllers')
-
-const {updateCarousel} = require('../controllers/carouselControllers')
+const { fetchCarousel, addCarousel, updateCarousel} = require('../controllers/carouselControllers')
 
 const router = express.Router()
 

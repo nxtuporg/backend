@@ -77,7 +77,7 @@ const addEvent = async (req, res) => {
     if (!title || !description || !date || !location || !time || !clubs || !clans) {
       return res.status(400).json({
         success: false,
-        message: 'All fields (title, description, date, location, clubs, clans) are required.',
+        message: 'All fields (title, description, date, location, time, clubs, clans) are required.',
       });
     }
 

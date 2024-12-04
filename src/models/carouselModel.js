@@ -4,7 +4,6 @@ const imageSchema = new mongoose.Schema({
   id: {
     type: String, 
     required: true,
-    unique: true
   },
   alt: {
     type: String,
