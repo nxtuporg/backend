@@ -9,27 +9,27 @@ const eventSchema = new mongoose.Schema({
     type: String,
   },
   date: {
-    type: Number,
+    type: String,
     required: true,
   },
   location: {
     type: String,
   },
   time: {
-    type: Number,
+    type: String,
   },
-  clubs: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Club", 
-    },
-  ],
-  clans: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Clan", 
-    },
-  ],
+  // clubs: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Club", 
+  //   },
+  // ],
+  // clans: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Clan", 
+  //   },
+  // ],
 });
 
 const Event = mongoose.model("Event", eventSchema);

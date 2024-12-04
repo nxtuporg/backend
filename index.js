@@ -21,7 +21,7 @@ const clanRoutes = require('./src/routes/clanRoutes.js')
 const clubRoutes = require('./src/routes/clubRoutes.js')
 const carouselRoutes = require('./src/routes/carouselRoutes.js')
 const authRoutes = require("./src/routes/authRoutes.js");
-
+const imageRoutes = require("./src/routes/imageRoute.js")
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api/events',eventsRoutes)
@@ -29,6 +29,8 @@ app.use('/api/clans',clanRoutes)
 app.use('/api/clubs',clubRoutes)
 app.use('/api/carousel',carouselRoutes)
 app.use("/api/user", authRoutes);
+app.use("/api/uploadImage", imageRoutes);
+
 
 app.use(express.json());
 
