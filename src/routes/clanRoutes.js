@@ -2,6 +2,10 @@ const express = require("express");
 
 const {fetchClans} = require('../controllers/clanControllers')
 
+const {addClan} = require('../controllers/clanControllers')
+
+const {updateClan} = require('../controllers/clanControllers')
+
 const router = express.Router()
 
 /**
@@ -34,9 +38,8 @@ const router = express.Router()
  *         description: Internal server error.
  */
 router.get('/', fetchClans)
-
-router.post('/')
-router.patch('/')
+router.post('/', addClan)
+router.patch('/', updateClan)
 router.delete('/')
  
 module.exports = router;

@@ -69,15 +69,15 @@ const updateEvent = async (req, res) => {
   }
 };
 
-
 const addEvent = async (req, res) => {
+    // return res.status(204).json("post kaam kr rha hai")
   try {
-    const { title, description, date, location } = req.body;
+    const { title, description, date, location, time, clubs, clans  } = req.body;
 
-    if (!title || !description || !date || !location) {
+    if (!title || !description || !date || !location || !time || !clubs || !clans) {
       return res.status(400).json({
         success: false,
-        message: 'All fields (title, description, date, location) are required.',
+        message: 'All fields (title, description, date, location, clubs, clans) are required.',
       });
     }
 
@@ -86,6 +86,9 @@ const addEvent = async (req, res) => {
       description,
       date,
       location,
+      time,
+      clubs,
+      clans
     });
     const savedEvent = await newEvent.save();
 

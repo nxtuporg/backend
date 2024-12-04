@@ -2,6 +2,10 @@ const express = require("express");
 
 const {fetchClubs} = require('../controllers/clubControllers')
 
+const {addClub} = require('../controllers/clubControllers')
+
+const {updateClub} = require('../controllers/clubControllers')
+
 const router = express.Router()
 
 /**
@@ -34,8 +38,8 @@ const router = express.Router()
  *         description: Internal server error.
  */
 router.get('/', fetchClubs)
-router.post('/')
-router.patch('/')
+router.post('/', addClub)
+router.patch('/', updateClub)
 router.delete('/')
  
 module.exports = router;

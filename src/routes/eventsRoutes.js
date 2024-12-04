@@ -2,7 +2,13 @@ const express = require("express");
 
 const {fetchEvents} = require('../controllers/eventsControllers')
 
+const {addEvent} = require('../controllers/eventsControllers')
+
+const {updateEvent} = require('../controllers/eventsControllers')
+
 const router = express.Router()
+
+
 
 /**
  * @swagger
@@ -34,8 +40,8 @@ const router = express.Router()
  *         description: Internal server error.
  */
 router.get('/', fetchEvents)
-router.post('/')
-router.patch('/')
+router.post('/', addEvent)
+router.patch('/', updateEvent)
 router.delete('/')
  
 module.exports = router;

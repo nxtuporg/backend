@@ -2,6 +2,10 @@ const express = require("express");
 
 const {fetchCarousel} = require('../controllers/carouselControllers')
 
+const {addCarousel} = require('../controllers/carouselControllers')
+
+const {updateCarousel} = require('../controllers/carouselControllers')
+
 const router = express.Router()
 
 /**
@@ -38,8 +42,8 @@ const router = express.Router()
 
 
 router.get('/', fetchCarousel)
-router.post('/')
-router.patch('/')
+router.post('/', addCarousel)
+router.patch('/', updateCarousel)
 router.delete('/')
  
 module.exports = router;

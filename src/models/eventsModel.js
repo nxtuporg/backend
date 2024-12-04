@@ -1,16 +1,22 @@
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
-    required: true,
-  },
-  date: {
-    type: Date,
     required: true,
   },
   description: {
     type: String,
+  },
+  date: {
+    type: Number,
+    required: true,
+  },
+  location: {
+    type: String,
+  },
+  time: {
+    type: Number,
   },
   clubs: [
     {
@@ -21,7 +27,7 @@ const eventSchema = new mongoose.Schema({
   clans: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Clans", 
+      ref: "Clan", 
     },
   ],
 });
