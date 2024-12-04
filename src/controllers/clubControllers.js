@@ -84,6 +84,7 @@ const addClub = async (req, res) => {
       message: 'Club created successfully',
       data: savedClub,
     });
+
   } catch (error) {
     console.error('Error adding club:', error);
 

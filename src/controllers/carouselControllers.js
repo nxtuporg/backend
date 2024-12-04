@@ -2,15 +2,14 @@ const Carousels = require('../models/carouselModel');
 
 const fetchCarousel = async (req, res) => {
     try {
-        const carousel = await Carousel.find({}); 
+        const carousel = await Carousels.find({}); 
 
         if (carousel.length > 0) {
-          return res.status(200).json({
+            return res.status(200).json({
                 success: true,
                 data: carousel,
             });
         } else {
-
             return res.status(404).json({
                 success: false,
                 message: "No carousel items found.",
@@ -22,85 +21,89 @@ const fetchCarousel = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "An error occurred while fetching carousel data.",
-            error: error.message, 
+            error: error.message,
         });
     }
 };
 
 const updateCarousel = async (req, res) => {
-  try {
-    const { carouselId } = req.params.carouselId;
-    const updateData = req.body;
+    try {
+        const { carouselId } = req.params; 
+        const updateData = req.body;
 
-    if (!carouselId) {
-      return res.status(400).json({
-        success: false,
-        message: 'Carousel ID is required',
-      });
+        if (!carouselId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Carousel ID is required',
+            });
+        }
+
+        const updatedCarousel = await Carousels.findByIdAndUpdate(
+            carouselId,
+            updateData,
+            { new: true }
+        );
+
+        if (!updatedCarousel) {
+            return res.status(404).json({
+                success: false,
+                message: 'Carousel item not found',
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Carousel item updated successfully',
+            data: updatedCarousel,
+        });
+    } catch (error) {
+        console.error('Error updating carousel:', error);
+
+        return res.status(500).json({
+            success: false,
+            message: 'An error occurred while updating the carousel item.',
+            error: error.message,
+        });
     }
-
-    const updatedCarousel = await Carousel.findByIdAndUpdate(
-      carouselId,
-      updateData,
-      { new: true }  
-    );
-
-    if (!updatedCarousel) {
-      return res.status(404).json({
-        success: false,
-        message: 'Carousel item not found',
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: 'Carousel item updated successfully',
-      data: updatedCarousel,
-    });
-  } catch (error) {
-    console.error('Error updating carousel:', error);
-
-    return res.status(500).json({
-      success: false,
-      message: 'An error occurred while updating the carousel item.',
-      error: error.message,
-    });
-  }
 };
+
 const addCarousel = async (req, res) => {
     try {
-      const { title, description, date, location } = req.body;
-  
-      if (!title || !description || !date || !location) {
-        return res.status(400).json({
-          success: false,
-          message: 'All fields (title, description, date, location) are required.',
+        console.log("req came")
+        const { id, alt, url, link } = req.body;
+
+        if (!id || !alt || !url || !link) {
+            return res.status(400).json({
+                success: false,
+                message: 'All fields (id, alt, url, link) are required.',
+            });
+        }
+
+        const newCarousel = new Carousels({
+            id,
+            alt,
+            url,
+            link,
         });
-      }
-  
-      const newCarousel = new Carousels({
-        title,
-        description,
-        date,
-        location,
-      });
-      const savedEvent = await newEvent.save();
-  
-      return res.status(201).json({
-        success: true,
-        message: 'Event created successfully',
-        data: savedEvent,
-      });
+
+        const savedCarousel = await newCarousel.save();
+
+        return res.status(201).json({
+            success: true,
+            message: 'Carousel item created successfully', 
+            data: savedCarousel,
+        });
     } catch (error) {
-      console.error('Error adding event:', error);
-  
-      return res.status(500).json({
-        success: false,
-        message: 'An error occurred while adding the event.',
-        error: error.message,  
-      });
+        console.error('Error adding carousel:', error);
+        
+        return res.status(500).json({
+            success: false,
+            message: 'An error occurred while adding the carousel item.',
+            error: error.message,
+        });
     }
-  };
+};
+
 module.exports = {
     fetchCarousel,
     updateCarousel,

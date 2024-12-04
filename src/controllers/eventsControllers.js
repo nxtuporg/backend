@@ -75,13 +75,12 @@ const addEvent = async (req, res) => {
         // Destructure event data from the request body
         const { title, description, date, location } = req.body;
 
-        // Validate the data
-        if (!title || !description || !date || !location) {
-            return res.status(400).json({
-                success: false,
-                message: "All fields are required (title, description, date, location)."
-            });
-        }
+    if (!title || !description || !date || !location || !time || !clubs || !clans) {
+      return res.status(400).json({
+        success: false,
+        message: 'All fields (title, description, date, location, time, clubs, clans) are required.',
+      });
+    }
 
         // Create a new event document
         const newEvent = new Events({
