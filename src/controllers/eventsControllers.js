@@ -69,10 +69,11 @@ const updateEvent = async (req, res) => {
   }
 };
 
+
 const addEvent = async (req, res) => {
-    // return res.status(204).json("post kaam kr rha hai")
-  try {
-    const { title, description, date, location, time, clubs, clans  } = req.body;
+    try {
+        // Destructure event data from the request body
+        const { title, description, date, location } = req.body;
 
     if (!title || !description || !date || !location || !time || !clubs || !clans) {
       return res.status(400).json({
@@ -81,32 +82,32 @@ const addEvent = async (req, res) => {
       });
     }
 
-    const newEvent = new Events({
-      title,
-      description,
-      date,
-      location,
-      time,
-      clubs,
-      clans
-    });
-    const savedEvent = await newEvent.save();
+        // Create a new event document
+        const newEvent = new Events({
+            title,
+            description,
+            date,
+            location,
+        });
 
-    return res.status(201).json({
-      success: true,
-      message: 'Event created successfully',
-      data: savedEvent,
-    });
-  } catch (error) {
-    console.error('Error adding event:', error);
+        // Save the new event to the database
+        const savedEvent = await newEvent.save();
 
-    return res.status(500).json({
-      success: false,
-      message: 'An error occurred while adding the event.',
-      error: error.message,  
-    });
-  }
+        return res.status(201).json({
+            success: true,
+            data: savedEvent,
+            message: "Event created successfully.",
+        });
+    } catch (error) {
+        console.error("Error creating event:", error);
+        return res.status(500).json({
+            success: false,
+            message: "An error occurred while creating the event.",
+            error: error.message,
+        });
+    }
 };
+
 
 module.exports = {
     fetchEvents,
