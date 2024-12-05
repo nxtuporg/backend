@@ -35,11 +35,15 @@ const eventSchema = new mongoose.Schema({
   registrationForm: {
     type: Object,
     required: true,
+    default:[]
   },
   Activated: {
     type: Boolean,
     required: false,
     default: false,
+  },
+  Ranking: {
+    type: String,
   },
   ActivatedForCarousel:{
     type: Boolean,
