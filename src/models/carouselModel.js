@@ -16,6 +16,10 @@ const imageSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
+  },
+  Date: {
+    type: Date,
+    required: true,
   }
 });
 

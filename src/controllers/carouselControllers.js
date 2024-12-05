@@ -70,9 +70,9 @@ const updateCarousel = async (req, res) => {
 const addCarousel = async (req, res) => {
     try {
         console.log("req came")
-        const { id, alt, url, link } = req.body;
+        const { id, alt, url, link, date } = req.body;
 
-        if (!id || !alt || !url || !link) {
+        if (!id || !alt || !url || !link || !date) {
             return res.status(400).json({
                 success: false,
                 message: 'All fields (id, alt, url, link) are required.',
@@ -84,6 +84,7 @@ const addCarousel = async (req, res) => {
             alt,
             url,
             link,
+            date,
         });
 
         const savedCarousel = await newCarousel.save();
