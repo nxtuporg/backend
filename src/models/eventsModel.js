@@ -41,6 +41,11 @@ const eventSchema = new mongoose.Schema({
     required: false,
     default: false,
   },
+  ActivatedForCarousel:{
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 });
 
 module.exports = mongoose.models.Event || mongoose.model("Event", eventSchema);
