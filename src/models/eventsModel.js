@@ -34,7 +34,7 @@ const eventSchema = new mongoose.Schema({
   },
   registrationForm: {
     type: Object,
-    required: false,
+    required: true,
   },
   Activated: {
     type: Boolean,
