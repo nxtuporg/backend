@@ -1,44 +1,51 @@
 const mongoose = require("mongoose");
-
 const eventSchema = new mongoose.Schema({
-  title: {
+  name: {
+    type: String,
+    required: true,
+  },
+  day: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+  address: {
     type: String,
     required: true,
   },
   description: {
     type: String,
+    required: true,
   },
-  date: {
+  body: {
     type: String,
     required: true,
   },
-  location: {
+  image: {
     type: String,
+    required: true,
   },
-  time: {
+  type: {
     type: String,
+    required: true,
   },
-  // clubs: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Club", 
-  //   },
-  // ],
-  // clans: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Clan", 
-  //   },
-  // ],
+  registrationForm: {
+    type: Object,
+    required: false,
+  },
+  Activated: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
-const Event = mongoose.model("Event", eventSchema);
-module.exports = Event;
-
-
+module.exports = mongoose.models.Event || mongoose.model("Event", eventSchema);
 
 ///////// WORK IN PROGRESS ////////
-
 
 // const mongoose = require("mongoose");
 
@@ -50,8 +57,7 @@ module.exports = Event;
 //       required: true,
 //     },
 //   });
-  
-  
+
 //   const eventSchema = new mongoose.Schema({
 //     name: {
 //       type: String,
@@ -67,7 +73,7 @@ module.exports = Event;
 //     createdBy: {
 //       type: mongoose.Schema.Types.ObjectId,
 //       required: true,
-//       refPath: "creatorModel", 
+//       refPath: "creatorModel",
 //     },
 //     creatorModel: {
 //       type: String,
@@ -75,8 +81,7 @@ module.exports = Event;
 //       enum: ["Clan", "Club"],
 //     },
 //   });
-  
-  
+
 //   const clanSchema = new mongoose.Schema({
 //     name: {
 //       type: String,
@@ -84,10 +89,9 @@ module.exports = Event;
 //       enum: CLANS,
 //     },
 //   });
-  
 
 //   const Clan = mongoose.model("Clan", clanSchema);
 //   const Club = mongoose.model("Club", clubSchema);
 //   const Event = mongoose.model("Event", eventSchema);
-  
+
 //   module.exports = { Clan, Club, Event };
