@@ -36,8 +36,6 @@ const fetchRegistrations = async (req, res) => {
 
 
 
-cons
-
 module.exports = {
     fetchRegistrations,
 }

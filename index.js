@@ -32,6 +32,8 @@ app.use('/api/clubs',clubRoutes)
 app.use('/api/carousel',carouselRoutes)
 app.use("/api/user", authRoutes);
 app.use("/api/uploadImage", imageRoutes);
+app.use("/api/registrations", registrationRoutes);
+
 
 
 app.use(express.json());
